@@ -8,7 +8,7 @@
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
 >
 
-    <!-- iWlz 2.1 CD052 version 1.8.5 (2019-08-28) -->
+    <!-- iWlz 2.1 CD052 version 1.9.7 (2019-10-01) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CD052"/>
@@ -48,21 +48,13 @@
         <xsl:param name="pOpname" select="./*[local-name() = 'Opname']"/>
         <xsl:param name="pLeveringsvorm" select="./*[local-name() = 'Leveringsvorm']"/>
 
-        <xsl:call-template name="checkimplication">
+        <xsl:call-template name="checksame">
             <xsl:with-param name="pThis" select="$pLeveringsvorm"/>
-            <xsl:with-param name="pValue1">4</xsl:with-param>
+            <xsl:with-param name="pValue1">4,8</xsl:with-param>
             <xsl:with-param name="pOther" select="$pOpname"/>
             <xsl:with-param name="pValue2">*</xsl:with-param>
             <xsl:with-param name="pRule">CD052</xsl:with-param>
         </xsl:call-template>
-        <xsl:call-template name="checkimplication">
-            <xsl:with-param name="pThis" select="$pLeveringsvorm"/>
-            <xsl:with-param name="pValue1">!4</xsl:with-param>
-            <xsl:with-param name="pOther" select="$pOpname"/>
-            <xsl:with-param name="pValue2"/>
-            <xsl:with-param name="pRule">CD052</xsl:with-param>
-        </xsl:call-template>
-
     </xsl:template>
 
 </xsl:stylesheet>

@@ -602,6 +602,118 @@
 			</xsl:otherwise>
 		</xsl:choose>
     </xsl:template>
+    
+    <!--  Check that a given date interval is fully covered by Ingangsdatum-Einddatum of given nodes; this filters pElements for more meaningful errors -->
+    <xsl:template name="checkDateCover">
+        <xsl:param name="pStartName">Ingangsdatum</xsl:param>
+        <xsl:param name="pEndName">Einddatum</xsl:param>
+        <xsl:param name="pElements" />
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">
+            FAIL
+        </xsl:param>
+        
+        <xsl:variable name="vStart" select="*[local-name() = $pStartName]/text()" />
+        <xsl:variable name="vEnd" select="*[local-name() = $pEndName]/text()" />
+        
+        <xsl:call-template name="checkDateCoverRecursive">
+	        <xsl:with-param name="pStart" select="$vStart" />
+	        <xsl:with-param name="pEnd" select="$vEnd" />
+	        <xsl:with-param name="pStartName" select="$pStartName" />
+	        <xsl:with-param name="pEndName" select="$pEndName" />
+	        <xsl:with-param name="pElements" select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vEnd, '-', '')
+	        																									and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vStart, '-', '')]" />
+	        <xsl:with-param name="pExtra" select="$pExtra" />
+	        <xsl:with-param name="pRule" select="$pRule" />
+        </xsl:call-template>
+    </xsl:template>
+    
+        <!--  Check that a given date interval is exactly covered by Ingangsdatum-Einddatum of given nodes -->
+    <xsl:template name="checkExactDateCover">
+        <xsl:param name="pStartName">Ingangsdatum</xsl:param>
+        <xsl:param name="pEndName">Einddatum</xsl:param>
+        <xsl:param name="pElements" />
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">
+            FAIL
+        </xsl:param>
+        
+        <xsl:variable name="vStart" select="*[local-name() = $pStartName]/text()" />
+        <xsl:variable name="vEnd" select="*[local-name() = $pEndName]/text()" />
+        <xsl:variable name="vElements" select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vEnd, '-', '')
+        																									and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vStart, '-', '')]" />
+        
+        <xsl:call-template name="checkDateCoverRecursive">
+	        <xsl:with-param name="pStart" select="$vStart" />
+	        <xsl:with-param name="pEnd" select="$vEnd" />
+	        <xsl:with-param name="pStartName" select="$pStartName" />
+	        <xsl:with-param name="pEndName" select="$pEndName" />
+	        <xsl:with-param name="pElements" select="$vElements" />
+	        <xsl:with-param name="pExtra" select="$pExtra" />
+	        <xsl:with-param name="pRule" select="$pRule" />
+        </xsl:call-template>
+        
+        <xsl:for-each select="$vElements">
+        	<xsl:variable name="vThis" select="." />
+        	<xsl:variable name="vPosition" select="position()" />
+        	<xsl:variable name="vViolations" select="$vElements[position() &gt; $vPosition
+        	                                           and translate(*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vThis/*[local-name() = $pEndName]/text(), '-', '')
+        	                                           and translate(*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vThis/*[local-name() = $pStartName]/text(), '-', '')
+        	                                           ]"/>
+           <xsl:if test="$vViolations">
+ 	        	<xsl:call-template name="addError">
+		        	<xsl:with-param name="pRule" select="$pRule" />
+	                <xsl:with-param name="pElements" select="$vViolations | $vThis"/>
+	        	</xsl:call-template>
+             </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!--  Check that a given date interval is fully covered by Ingangsdatum-Einddatum of given nodes -->
+    <xsl:template name="checkDateCoverRecursive">
+        <xsl:param name="pStart" />
+        <xsl:param name="pEnd" />
+        <xsl:param name="pStartName" />
+        <xsl:param name="pEndName" />
+        <xsl:param name="pElements" />
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">
+            FAIL
+        </xsl:param>
+        <xsl:variable name="vStart" select="translate($pStart, '-', '')" />
+        <xsl:if test="$vStart &lt;= translate($pEnd, '-', '')">
+        	<xsl:variable name="vChild"
+				select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= $vStart
+																			and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= $vStart
+																			and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate(./*[local-name() = $pStartName]/text(), '-', '')
+																			][1]" />
+        	<xsl:choose>
+	        	<xsl:when test="$vChild">
+	        		<xsl:call-template name="checkDateCoverRecursive">
+	        			<xsl:with-param name="pStart">
+	        				<xsl:call-template name="addDate">
+	        					<xsl:with-param name="pDate" select="$vChild/*[local-name() = $pEndName]/text()" />
+	        					<xsl:with-param name="pExtra">1</xsl:with-param>
+	        				</xsl:call-template>
+	        			</xsl:with-param>
+	        			<xsl:with-param name="pEnd" select="$pEnd" />
+				        <xsl:with-param name="pStartName" select="$pStartName" />
+				        <xsl:with-param name="pEndName" select="$pEndName" />
+	        			<xsl:with-param name="pElements" select="$pElements" />
+	        			<xsl:with-param name="pExtra" select="$pExtra" />
+	        			<xsl:with-param name="pRule" select="$pRule" />
+	        		</xsl:call-template>
+	        	</xsl:when>
+	        	<xsl:otherwise>
+	        	<xsl:call-template name="addError">
+		        	<xsl:with-param name="pRule" select="$pRule" />
+	                <xsl:with-param name="pElements" select="$pElements | $pExtra"/>
+	        	</xsl:call-template>
+	        	</xsl:otherwise>
+        	</xsl:choose>
+        </xsl:if>
+    </xsl:template>
+
 
     <!-- Checks if Date pThis from Node pSource is equal to, or equal to or
         greater/lesser than a given pDate; generates an error if not dates must be
@@ -1471,7 +1583,7 @@
     </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        1.8.5
+        1.9.7
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>
@@ -1495,7 +1607,7 @@
                 <xsl:comment>
                     XSLT<xsl:copy-of select="system-property('xsl:version')"/>(<xsl:copy-of
                         select="system-property('xsl:vendor')"/>)
-                    XSLT validatie 1.8.5
+                    XSLT validatie 1.9.7
                 </xsl:comment>
             </r:Header>
             <r:Fouten>

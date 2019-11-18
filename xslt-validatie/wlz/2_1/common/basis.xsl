@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 version 1.8.5 (2019-08-28) -->
+	<!-- iWlz 2.1 version 1.9.7 (2019-10-01) -->
 	<xsl:import href="../../../common/2_0/basis.xsl"/>
 
 	<xsl:template match="*" mode="getDetails" priority="1">
@@ -24,11 +24,13 @@
 			<xsl:when test="$pRule='CD048'">Als ExtraKostenThuis en ToeslagBeademing niet gevuld zijn, dan verplicht vullen, anders leeg laten.</xsl:when>
 			<xsl:when test="$pRule='CD050'">Als leveringsvorm de waarde 7 (MPT) heeft, dan verplicht vullen, anders leeg laten.</xsl:when>
 			<xsl:when test="$pRule='CD051'">Als Leveringsvorm de waarde 4 (Verblijf) of 5 (VPT) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
-			<xsl:when test="$pRule='CD052'">Als leveringsvorm de waarde 4 (Verblijf) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
+			<xsl:when test="$pRule='CD052'">Als leveringsvorm de waarde 4 (Verblijf) of 8 (DTV) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CD054'">Als StatusAanlevering de waarde 1 (eerste aanlevering) of 2 (gewijzigde aanlevering) heeft, dan verplicht vullen.</xsl:when>
-			<xsl:when test="$pRule='CD070'">Als Wzd / VerklaringWzd de waarde 1 (Opname op basis van artikel 21 is aan de orde) bevat, dan verplicht vullen, anders leeg laten.</xsl:when>
+			<xsl:when test="$pRule='CD070'">Als WzdVerklaring de waarde 1 (Opname op basis van artikel 21 is aan de orde) bevat, dan verplicht vullen, anders leeg laten.</xsl:when>
 			<xsl:when test="$pRule='CD071'">Als Leveringsvorm de waarde 4 (Verblijf) of 5 (VPT) heeft en Startdatum is kleiner of gelijk aan 31-12-2019, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CD072'">Als Leveringsvorm de waarde 8 (DTV) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
+			<xsl:when test="$pRule='CD073'">Als Leveringsvorm de waarde 4 (Verblijf), 5 (VPT) of 8 (DTV) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
+			<xsl:when test="$pRule='CD074'">Als Leveringsvorm de waarde 7 (MPT) of 8 (DTV) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CS002'">De waarde moet voldoen aan de 11-proef.</xsl:when>
 			<xsl:when test="$pRule='CS003'">Indien van toepassing vullen met een waarde die groter is dan, of gelijk is aan de Begindatum (of Ingangsdatum) van de aangeduide periode.</xsl:when>
 			<xsl:when test="$pRule='CS004'">Aaneengesloten vullen (zonder punten of spaties).</xsl:when>
@@ -38,6 +40,7 @@
 			<xsl:when test="$pRule='CS015'">BerichtSubversie vullen met 0.</xsl:when>
 			<xsl:when test="$pRule='CS023'">Vullen met een bestaande datum die niet groter is dan de Dagtekening van het bestand.</xsl:when>
 			<xsl:when test="$pRule='CS025'">BerichtVersie vullen met 5.</xsl:when>
+			<xsl:when test="$pRule='CS035'">3 (gescheiden) en 6 (gescheiden geregistreerd partner) niet vullen.</xsl:when>
 			<xsl:when test="$pRule='CS050'">Als Partnernaam gevuld is, dan NaamGebruik vullen met waarde 1, 2, 3 of 4. Anders waarde 1 vullen.</xsl:when>
 			<xsl:when test="$pRule='CS057'">Als StatusAanlevering in alle onderliggende producten de waarde 3 (verwijderen aanlevering) heeft, dan 9 (niet van toepassing (ongewijzigd)) vullen, anders 1 (eerste aanlevering) vullen.</xsl:when>
 			<xsl:when test="$pRule='CS058'">1 (eerste aanlevering) of 3 (verwijderen aanlevering) vullen.</xsl:when>
@@ -69,8 +72,8 @@
 			<xsl:when test="$pRule='TR006'">De berichtklasse Contact moet een berichtelement Telefoon, en/of de combinatie Huis en Postcode bevatten.</xsl:when>
 			<xsl:when test="$pRule='TR008'">De Klasse moet horen bij de betreffende FunctieCode</xsl:when>
 			<xsl:when test="$pRule='TR010'">Opslag mag niet gevuld zijn als Klasse de waarde '99' bevat of Klasse niet de maximum waarde bevat.</xsl:when>
-			<xsl:when test="$pRule='TR014'">De grootste Einddatum van een geindiceerde zorgeenheid moet samenvallen met Einddatum in de Indicatie.</xsl:when>
-			<xsl:when test="$pRule='TR015'">De kleinste Ingangsdatum van een geindiceerde zorgeenheid moet samenvallen met Ingangsdatum in de Indicatie.</xsl:when>
+			<xsl:when test="$pRule='TR014'">De grootste Einddatum van een geïndiceerde zorgeenheid moet samenvallen met Einddatum in de Indicatie.</xsl:when>
+			<xsl:when test="$pRule='TR015'">De kleinste Ingangsdatum van een geïndiceerde zorgeenheid moet samenvallen met Ingangsdatum in de Indicatie.</xsl:when>
 			<xsl:when test="$pRule='TR016'">De geldigheidsduur van de zorgtoewijzing moet vallen binnen de geldigheidsduur van de indicatie.</xsl:when>
 			<xsl:when test="$pRule='TR017'">Begindatum en (indien van toepassing) Sleuteldatum van een geleverde zorgeenheid moeten vallen binnen de geldigheidsduur van de zorgtoewijzing.</xsl:when>
 			<xsl:when test="$pRule='TR018'">Indien Begindatum in een MutatieZorgzwaartepakket of MutatieFunctie gevuld is, moet Mutatiedatum groter dan of gelijk zijn aan deze Begindatum.</xsl:when>
@@ -88,7 +91,7 @@
 			<xsl:when test="$pRule='TR052'">Begindatum of Startdatum van een geleverde zorgeenheid mag niet groter zijn dan Dagtekening in de Header.</xsl:when>
 			<xsl:when test="$pRule='TR056'">Identificatie moet per berichtsoort uniek zijn voor de verzendende partij.</xsl:when>
 			<xsl:when test="$pRule='TR057'">Wanneer meer GeindiceerdeZorgzwaartepakketten aanwezig zijn bij een Indicatie, dan mogen de geldigheidsduren van deze zorgzwaartepakketten elkaar niet overlappen.</xsl:when>
-			<xsl:when test="$pRule='TR061'">Bij een Client moet minimaal een Adres voorkomen waarvan Soort de waarde '01' (BRP-adres) of '03' (Verblijfadres) heeft.</xsl:when>
+			<xsl:when test="$pRule='TR061'">Bij een Client moet minimaal één Adres voorkomen waarvan Soort de waarde '01' (BRP-adres) of '03' (Verblijfadres) heeft.</xsl:when>
 			<xsl:when test="$pRule='TR063'">Indien StatusAanlevering de waarde 3 (aanlevering verwijderen) bevat, dan moet voor de betreffende Client een eerdere aanlevering met dezelfde sleutel verstuurd zijn.</xsl:when>
 			<xsl:when test="$pRule='TR064'">Instelling moet overeenkomen met Afzender in de Header of moet (indien de verzendende partij een zorgkantoor is) conform de iWlz-AGB-codelijst horen bij Afzender.</xsl:when>
 			<xsl:when test="$pRule='TR065'">De toewijzende partij moet overeenkomen met de Afzender van het bericht.</xsl:when>
@@ -121,7 +124,10 @@
 			<xsl:when test="$pRule='TR111'">De einddatum van de toegewezen zorgeenheid moet leeg zijn of groter of gelijk zijn aan de overdrachtdatum van de indicatie.</xsl:when>
 			<xsl:when test="$pRule='TR119'">Indien Soort de waarde 5 (Administratief) bevat, dan moet Opname de waarde 1 (Ja) bevatten.</xsl:when>
 			<xsl:when test="$pRule='TR120'">Als Leveringsvorm in Aanvraag de waarde ‘4’ (Verblijf) bevat, mag er voor iedere ToewijzingIngangsdatum maximaal één AanvraagInstelling aanwezig zijn waarvan Opname de waarde ‘1’ (Ja) bevat.</xsl:when>
+			<xsl:when test="$pRule='TR123'">Voor iedere dag dat er een zorgtoewijzing is voor verblijf met opname Nee moet er tenminste een (1) zorgtoewijzing zijn voor verblijf met opname Ja.</xsl:when>
 			<xsl:when test="$pRule='TR124'">Indien Leveringsvorm de waarde 8 (Deeltijdverblijf (DTV)) heeft, moet Ingangsdatum groter of gelijk zijn aan 01-01-2020.</xsl:when>
+			<xsl:when test="$pRule='TR126'">Voor iedere dag dat er een zorgtoewijzing is voor deeltijdverblijf moet er precies een (1) zorgtoewijzing zijn voor deeltijdverblijf met opname J.</xsl:when>
+			<xsl:when test="$pRule='TR127'">Als leveringsvorm in Aanvraag de waarde '8' (Deeltijdverblijf) bevat, moet er voor iedere dag van de aangevraagde periode precies een (1) AanvraagInstelling zijn waarvan Opname de waarde '1'(Ja) bevat.</xsl:when>
 			</xsl:choose>
 	</xsl:template>
 

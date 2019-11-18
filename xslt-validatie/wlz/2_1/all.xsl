@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 (28/08/2019 09:28) -->
+	<!-- iWlz 2.1 (01/10/2019 13:44) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD004.xsl" />
@@ -24,6 +24,8 @@
 	<xsl:include href="condities/CD070.xsl" />
 	<xsl:include href="condities/CD071.xsl" />
 	<xsl:include href="condities/CD072.xsl" />
+	<xsl:include href="condities/CD073.xsl" />
+	<xsl:include href="condities/CD074.xsl" />
 	<xsl:include href="constraints/CS002.xsl" />
 	<xsl:include href="constraints/CS003.xsl" />
 	<xsl:include href="constraints/CS014.xsl" />
@@ -82,7 +84,10 @@
 	<xsl:include href="rules/TR111.xsl" />
 	<xsl:include href="rules/TR119.xsl" />
 	<xsl:include href="rules/TR120.xsl" />
+	<xsl:include href="rules/TR123.xsl" />
 	<xsl:include href="rules/TR124.xsl" />
+	<xsl:include href="rules/TR126.xsl" />
+	<xsl:include href="rules/TR127.xsl" />
 
 	<xsl:template match="*" mode="check" priority="0">
 		<xsl:apply-templates select="." mode="CD004"/>
@@ -106,6 +111,8 @@
 		<xsl:apply-templates select="." mode="CD070"/>
 		<xsl:apply-templates select="." mode="CD071"/>
 		<xsl:apply-templates select="." mode="CD072"/>
+		<xsl:apply-templates select="." mode="CD073"/>
+		<xsl:apply-templates select="." mode="CD074"/>
 		<xsl:apply-templates select="." mode="CS002"/>
 		<xsl:apply-templates select="." mode="CS003"/>
 		<xsl:apply-templates select="." mode="CS014"/>
@@ -164,6 +171,9 @@
 		<xsl:apply-templates select="." mode="TR111"/>
 		<xsl:apply-templates select="." mode="TR119"/>
 		<xsl:apply-templates select="." mode="TR120"/>
+		<xsl:apply-templates select="." mode="TR123"/>
 		<xsl:apply-templates select="." mode="TR124"/>
+		<xsl:apply-templates select="." mode="TR126"/>
+		<xsl:apply-templates select="." mode="TR127"/>
 	</xsl:template>
 </xsl:stylesheet>

@@ -10,7 +10,7 @@
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
 >
 
-    <!-- iWlz 2.1 CD051 version 1.8.5 (2019-08-28) -->
+    <!-- iWlz 2.1 CD051 version 1.9.7 (2019-10-01) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CD051"/>
@@ -22,10 +22,6 @@
         <xsl:call-template name="cd051">
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="aw33:Klasse"/>
-        </xsl:call-template>
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="aw33:Dossierhouder"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -39,19 +35,11 @@
     <xsl:template match="aw39:Aanvraag" mode="CD051">
         <xsl:call-template name="cd051">
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="aw39:Dossierhouder"/>
-        </xsl:call-template>
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="aw39:Klasse"/>
         </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="ca317:GeleverdeZorg" mode="CD051">
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="ca317:Instelling"/>
-        </xsl:call-template>
         <xsl:call-template name="cd051">
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="ca317:Klasse"/>
@@ -63,20 +51,12 @@
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="zk31:Klasse"/>
         </xsl:call-template>
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="zk31:Dossierhouder"/>
-        </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="zk33:ToegewezenZorgzwaartepakket" mode="CD051">
         <xsl:call-template name="cd051">
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="zk33:Klasse"/>
-        </xsl:call-template>
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="zk33:Dossierhouder"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -92,30 +72,17 @@
             <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
             <xsl:with-param name="pOther" select="zk39:Klasse"/>
         </xsl:call-template>
-        <xsl:call-template name="cd051">
-            <xsl:with-param name="pLeveringsvorm" select="*[local-name()='Leveringsvorm']"/>
-            <xsl:with-param name="pOther" select="zk39:Dossierhouder"/>
-        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="cd051">
         <xsl:param name="pLeveringsvorm"/>
         <xsl:param name="pOther"/>
 
-        <xsl:call-template name="checkimplication">
+        <xsl:call-template name="checksame">
             <xsl:with-param name="pThis" select="$pLeveringsvorm"/>
             <xsl:with-param name="pValue1">4,5</xsl:with-param>
             <xsl:with-param name="pOther" select="$pOther"/>
             <xsl:with-param name="pValue2">*</xsl:with-param>
-            <xsl:with-param name="pRule">
-                CD051
-            </xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="checkimplication">
-            <xsl:with-param name="pThis" select="$pLeveringsvorm"/>
-            <xsl:with-param name="pValue1">2,7</xsl:with-param>
-            <xsl:with-param name="pOther" select="$pOther"/>
-            <xsl:with-param name="pValue2"/>
             <xsl:with-param name="pRule">
                 CD051
             </xsl:with-param>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 AW35 (28/08/2019 09:28) -->
+	<!-- iWlz 2.1 AW35 (01/10/2019 13:44) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD004.xsl" />

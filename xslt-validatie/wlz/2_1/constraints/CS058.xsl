@@ -5,7 +5,7 @@
                 xmlns:aw39="http://www.istandaarden.nl/iwlz/2_1/aw39/schema"
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
                 >
-    <!-- iWlz 2.1 CS058 version 1.8.5 (2019-08-28) -->
+    <!-- iWlz 2.1 CS058 version 1.9.7 (2019-10-01) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS058"/>
