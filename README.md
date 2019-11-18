@@ -10,9 +10,6 @@ Deze repository bevat de Xslt-sets voor gebruik binnen de iWlz.
 
 ## Laatste versie
 ![Laatste release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?include_prereleases&style=flat-square)
-![LaatseGitHub tag (latest by date)](https://img.shields.io/github/v/tag/iStandaarden/iWlz-Xslt?style=flat-square)
+* Overzicht Releases: [https://github.com/iStandaarden/iWlz-Xslt/releases](https://github.com/iStandaarden/iWlz-Xslt/releases)
 
-## Versionering - mutaties
-* [iWlz2.1-v1.8.2] - iWlz Release 2.1 - xslt-versie 1.8.2 - 02-08-2019 - PRE-RELEASE 
-  * initiele versie bij de concept publicatie iWlz Release 2.1 
 
