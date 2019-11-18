@@ -10,7 +10,7 @@ Deze repository bevat de Xslt-sets voor gebruik binnen de iWlz.
 
 ## Laatste versie
 ![Laatste release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?include_prereleases&style=flat-square)
-[Laatste release](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?style=flat-square)
+![Laatste release](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?style=flat-square)
 
 ## Schematisch - minimale versie
 Bericht | CIZ-ZK | ZK-ZA | ZK-CAK | ZK-ZK | ZK-ZIN
