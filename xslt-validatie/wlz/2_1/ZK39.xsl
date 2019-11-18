@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 ZK39 (05/08/2019 16:02) -->
+	<!-- iWlz 2.1 ZK39 (28/08/2019 09:28) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD005.xsl" />
@@ -18,6 +18,7 @@
 	<xsl:include href="constraints/CS003.xsl" />
 	<xsl:include href="constraints/CS023.xsl" />
 	<xsl:include href="constraints/CS050.xsl" />
+	<xsl:include href="constraints/CS058.xsl" />
 	<xsl:include href="constraints/CS072.xsl" />
 	<xsl:include href="constraints/CS074.xsl" />
 	<xsl:include href="constraints/CS089.xsl" />
@@ -48,6 +49,7 @@
 		<xsl:apply-templates select="." mode="CS003"/>
 		<xsl:apply-templates select="." mode="CS023"/>
 		<xsl:apply-templates select="." mode="CS050"/>
+		<xsl:apply-templates select="." mode="CS058"/>
 		<xsl:apply-templates select="." mode="CS072"/>
 		<xsl:apply-templates select="." mode="CS074"/>
 		<xsl:apply-templates select="." mode="CS089"/>

@@ -12,7 +12,7 @@
 		    xmlns:ca317="http://www.istandaarden.nl/iwlz/2_1/ca317/schema"
 		    >
 
-    <!-- iWlz 2.1 CS074 version 1.8.2 (2019-08-05) -->
+    <!-- iWlz 2.1 CS074 version 1.8.5 (2019-08-28) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS074"/>

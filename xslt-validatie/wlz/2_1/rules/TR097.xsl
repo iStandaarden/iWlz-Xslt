@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema"
 >
-    <!-- iwlz 2.1 TR097 version 1.8.2 (2019-08-05) -->
+    <!-- iwlz 2.1 TR097 version 1.8.5 (2019-08-28) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="TR097"/>

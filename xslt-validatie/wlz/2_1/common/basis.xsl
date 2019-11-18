@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 version 1.8.2 (2019-08-05) -->
+	<!-- iWlz 2.1 version 1.8.5 (2019-08-28) -->
 	<xsl:import href="../../../common/2_0/basis.xsl"/>
 
 	<xsl:template match="*" mode="getDetails" priority="1">
@@ -76,12 +76,12 @@
 			<xsl:when test="$pRule='TR018'">Indien Begindatum in een MutatieZorgzwaartepakket of MutatieFunctie gevuld is, moet Mutatiedatum groter dan of gelijk zijn aan deze Begindatum.</xsl:when>
 			<xsl:when test="$pRule='TR019'">De melding aanvang zorg of de mutatie moet gerelateerd zijn aan een zorgtoewijzing (op basis van de sleutelvelden).</xsl:when>
 			<xsl:when test="$pRule='TR020'">Mutatiedatum per geleverde zorgeenheid mag niet voorbij de Einddatum van de bijbehorende toewijzing liggen.</xsl:when>
-			<xsl:when test="$pRule='TR021'">Voor iedere client geldt dat er minimaal een toegewezen zorgeenheid moet zijn waarbij Instelling hoort bij Ontvanger.</xsl:when>
+			<xsl:when test="$pRule='TR021'">Voor iedere client geldt dat er minimaal één toegewezen zorgeenheid moet zijn waarbij Instelling hoort bij Ontvanger.</xsl:when>
 			<xsl:when test="$pRule='TR034'">Opslag mag niet gevuld zijn als Functiecode de waarde ' 71' (verblijf tijdelijk) bevat.</xsl:when>
-			<xsl:when test="$pRule='TR035'">Wanneer eenzelfde zorgeenheid meer dan een keer is geindiceerd, mogen de geldigheidsduren behorend bij deze zorgeenheden elkaar niet overlappen.</xsl:when>
+			<xsl:when test="$pRule='TR035'">Wanneer eenzelfde zorgeenheid meer dan één keer is geindiceerd, mogen de geldigheidsduren behorend bij deze zorgeenheden elkaar niet overlappen.</xsl:when>
 			<xsl:when test="$pRule='TR037'">Bij een Indicatie komt in ieder geval een zorgeenheid (GeindiceerdeFunctie of GeindiceerdZorgzwaartepakket) voor.</xsl:when>
-			<xsl:when test="$pRule='TR039'">Bij een Client in een AW35 komt in ieder geval een geleverde zorgeenheid (GeleverdeFunctie of GeleverdZorgzwaartepakket) voor.</xsl:when>
-			<xsl:when test="$pRule='TR040'">Bij een Client in een AW39 komt in ieder geval een mutatie (MutatieFunctie of MutatieZorgzwaartepakket) of een Aanvraag voor.</xsl:when>
+			<xsl:when test="$pRule='TR039'">Bij een Client in een AW35 komt in ieder geval één geleverde zorgeenheid (GeleverdeFunctie of GeleverdZorgzwaartepakket) voor.</xsl:when>
+			<xsl:when test="$pRule='TR040'">Bij een Client in een AW39 komt in ieder geval één mutatie (MutatieFunctie of MutatieZorgzwaartepakket) of één Aanvraag voor.</xsl:when>
 			<xsl:when test="$pRule='TR041'">Als een AanvraagZorgzwaartepakket in hetzelfde bericht gecombineerd wordt met een MutatieZorgzwaartepakket moet de Mutatiecode gelijk zijn aan 12, 18 of 19.</xsl:when>
 			<xsl:when test="$pRule='TR042'">De gebruikte AGB-code moet geldig zijn.</xsl:when>
 			<xsl:when test="$pRule='TR046'">De Leveringsstatus moet toegestaan zijn bij de opgegeven Mutatiecode.</xsl:when>
