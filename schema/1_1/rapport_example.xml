@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r:Rapport xmlns:r="http://www.istandaarden.nl/validatie/1_1/rapport/schema">
+	<r:Header>
+		<r:BerichtCode>354</r:BerichtCode>
+		<r:BerichtVersie>5</r:BerichtVersie>
+		<r:BerichtSubversie>0</r:BerichtSubversie>
+		<r:BerichtIdentificatie>
+			<r:Identificatie>tisIwlzZAdir</r:Identificatie>
+			<r:Dagtekening>2014-07-20</r:Dagtekening>
+		</r:BerichtIdentificatie>
+		<r:XSLTVersie>1.3.2</r:XSLTVersie>
+	</r:Header>
+	<r:Fouten>
+		<r:Fout>
+			<r:Code>CD004</r:Code>
+			<r:Locatie>/Bericht/Clienten/Client/GeleverdeZorgzwaartepakketten/GeleverdZorgzwaartepakket/Sleuteldatum</r:Locatie>
+			<r:Locatie>/Bericht/Clienten/Client/GeleverdeZorgzwaartepakketten/GeleverdZorgzwaartepakket/Leveringsvorm</r:Locatie>
+		</r:Fout>
+		<r:Fout>
+			<r:Code>CD051</r:Code>
+			<r:Locatie>/Bericht/Clienten/Client/GeleverdeZorgzwaartepakketten/GeleverdZorgzwaartepakket/Klasse</r:Locatie>
+			<r:Locatie>/Bericht/Clienten/Client/GeleverdeZorgzwaartepakketten/GeleverdZorgzwaartepakket/Leveringsvorm</r:Locatie>
+		</r:Fout>
+		<r:Fout>
+			<r:Code>CS127</r:Code>
+			<r:Locatie>/Bericht/Clienten/Client/GeleverdeZorgzwaartepakketten/GeleverdZorgzwaartepakket/Leveringsvorm</r:Locatie>
+		</r:Fout>
+	</r:Fouten>
+</r:Rapport>
