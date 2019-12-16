@@ -3,7 +3,7 @@
                 xmlns:aw35="http://www.istandaarden.nl/iwlz/2_1/aw35/schema"
                 xmlns:zk35="http://www.istandaarden.nl/iwlz/2_1/zk35/schema">
 
-    <!-- iWlz 2.1 CS088 version 1.9.7 (2019-10-01) -->
+    <!-- iWlz 2.1 CS088 version 1.9.8 (2019-10-03) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS088"/>

@@ -571,11 +571,13 @@
         <xsl:param name="pExtra"/>
         <xsl:param name="pOverflow">carry</xsl:param>
 
-        <xsl:call-template name="adjustDate">
-            <xsl:with-param name="pDate"
-                            select="translate($pDate, '-', '') + $pExtra"/>
-            <xsl:with-param name="pOverflow" select="$pOverflow" />
-        </xsl:call-template>
+		<xsl:if test="normalize-space($pDate) != ''">
+	        <xsl:call-template name="adjustDate">
+	            <xsl:with-param name="pDate"
+	                            select="translate($pDate, '-', '') + $pExtra"/>
+	            <xsl:with-param name="pOverflow" select="$pOverflow" />
+	        </xsl:call-template>
+		</xsl:if>
     </xsl:template>
     
     <!-- Adds a number of months to a date; only works for pExtra < (100 - 12), handles negative values -->
@@ -603,6 +605,32 @@
 		</xsl:choose>
     </xsl:template>
     
+    <!--  Check that a given date intervals have no overlap -->
+    <xsl:template name="checkNoOverlap">
+        <xsl:param name="pStartName">Ingangsdatum</xsl:param>
+        <xsl:param name="pEndName">Einddatum</xsl:param>
+        <xsl:param name="pElements" />
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">
+            FAIL
+        </xsl:param>
+        
+        <xsl:for-each select="$pElements">
+        	<xsl:variable name="vThis" select="." />
+        	<xsl:variable name="vPosition" select="position()" />
+        	<xsl:variable name="vViolations" select="$pElements[position() &gt; $vPosition
+        	                                           and (normalize-space($vThis/*[local-name() = $pEndName]/text()) = '' or translate(*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vThis/*[local-name() = $pEndName]/text(), '-', ''))
+        	                                           and (normalize-space(*[local-name() = $pEndName]/text()) = '' or translate(*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vThis/*[local-name() = $pStartName]/text(), '-', ''))
+        	                                           ]"/>
+           <xsl:if test="$vViolations">
+ 	        	<xsl:call-template name="addError">
+		        	<xsl:with-param name="pRule" select="$pRule" />
+	                <xsl:with-param name="pElements" select="$vViolations | $vThis"/>
+	        	</xsl:call-template>
+             </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
     <!--  Check that a given date interval is fully covered by Ingangsdatum-Einddatum of given nodes; this filters pElements for more meaningful errors -->
     <xsl:template name="checkDateCover">
         <xsl:param name="pStartName">Ingangsdatum</xsl:param>
@@ -621,53 +649,13 @@
 	        <xsl:with-param name="pEnd" select="$vEnd" />
 	        <xsl:with-param name="pStartName" select="$pStartName" />
 	        <xsl:with-param name="pEndName" select="$pEndName" />
-	        <xsl:with-param name="pElements" select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vEnd, '-', '')
-	        																									and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vStart, '-', '')]" />
+	        <xsl:with-param name="pElements" select="$pElements[(normalize-space($vEnd) = '' or translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vEnd, '-', ''))
+	        																									and (normalize-space(./*[local-name() = $pEndName]/text()) = '' or translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vStart, '-', ''))]" />
 	        <xsl:with-param name="pExtra" select="$pExtra" />
 	        <xsl:with-param name="pRule" select="$pRule" />
         </xsl:call-template>
     </xsl:template>
     
-        <!--  Check that a given date interval is exactly covered by Ingangsdatum-Einddatum of given nodes -->
-    <xsl:template name="checkExactDateCover">
-        <xsl:param name="pStartName">Ingangsdatum</xsl:param>
-        <xsl:param name="pEndName">Einddatum</xsl:param>
-        <xsl:param name="pElements" />
-        <xsl:param name="pExtra" select="emptyNodeSet"/>
-        <xsl:param name="pRule">
-            FAIL
-        </xsl:param>
-        
-        <xsl:variable name="vStart" select="*[local-name() = $pStartName]/text()" />
-        <xsl:variable name="vEnd" select="*[local-name() = $pEndName]/text()" />
-        <xsl:variable name="vElements" select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vEnd, '-', '')
-        																									and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vStart, '-', '')]" />
-        
-        <xsl:call-template name="checkDateCoverRecursive">
-	        <xsl:with-param name="pStart" select="$vStart" />
-	        <xsl:with-param name="pEnd" select="$vEnd" />
-	        <xsl:with-param name="pStartName" select="$pStartName" />
-	        <xsl:with-param name="pEndName" select="$pEndName" />
-	        <xsl:with-param name="pElements" select="$vElements" />
-	        <xsl:with-param name="pExtra" select="$pExtra" />
-	        <xsl:with-param name="pRule" select="$pRule" />
-        </xsl:call-template>
-        
-        <xsl:for-each select="$vElements">
-        	<xsl:variable name="vThis" select="." />
-        	<xsl:variable name="vPosition" select="position()" />
-        	<xsl:variable name="vViolations" select="$vElements[position() &gt; $vPosition
-        	                                           and translate(*[local-name() = $pStartName]/text(), '-', '') &lt;= translate($vThis/*[local-name() = $pEndName]/text(), '-', '')
-        	                                           and translate(*[local-name() = $pEndName]/text(), '-', '') &gt;= translate($vThis/*[local-name() = $pStartName]/text(), '-', '')
-        	                                           ]"/>
-           <xsl:if test="$vViolations">
- 	        	<xsl:call-template name="addError">
-		        	<xsl:with-param name="pRule" select="$pRule" />
-	                <xsl:with-param name="pElements" select="$vViolations | $vThis"/>
-	        	</xsl:call-template>
-             </xsl:if>
-        </xsl:for-each>
-    </xsl:template>
     
     <!--  Check that a given date interval is fully covered by Ingangsdatum-Einddatum of given nodes -->
     <xsl:template name="checkDateCoverRecursive">
@@ -681,11 +669,11 @@
             FAIL
         </xsl:param>
         <xsl:variable name="vStart" select="translate($pStart, '-', '')" />
-        <xsl:if test="$vStart &lt;= translate($pEnd, '-', '')">
+        <xsl:if test="normalize-space($vStart) != '' and (normalize-space($pEnd) = '' or $vStart &lt;= translate($pEnd, '-', ''))">
         	<xsl:variable name="vChild"
-				select="$pElements[translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= $vStart
-																			and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= $vStart
-																			and translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate(./*[local-name() = $pStartName]/text(), '-', '')
+				select="$pElements[(translate(./*[local-name() = $pStartName]/text(), '-', '') &lt;= $vStart)
+																			and (normalize-space(./*[local-name() = $pEndName]/text()) = '' or translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= $vStart)
+																			and (normalize-space(./*[local-name() = $pEndName]/text()) = '' or translate(./*[local-name() = $pEndName]/text(), '-', '') &gt;= translate(./*[local-name() = $pStartName]/text(), '-', ''))
 																			][1]" />
         	<xsl:choose>
 	        	<xsl:when test="$vChild">
@@ -1583,7 +1571,7 @@
     </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        1.9.7
+        1.9.8
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>
@@ -1607,7 +1595,7 @@
                 <xsl:comment>
                     XSLT<xsl:copy-of select="system-property('xsl:version')"/>(<xsl:copy-of
                         select="system-property('xsl:vendor')"/>)
-                    XSLT validatie 1.9.7
+                    XSLT validatie 1.9.8
                 </xsl:comment>
             </r:Header>
             <r:Fouten>
