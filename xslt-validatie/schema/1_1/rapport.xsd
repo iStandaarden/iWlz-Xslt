@@ -8,6 +8,18 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	
+	<xs:element name="XSLTHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:sequence>
+					<xs:element name="Standaard" type="r:LDT_Standaard" />
+					<xs:element name="StandaardRelease" type="r:LDT_Release" />
+					<xs:element name="XSLTVersie" type="r:LDT_XSLTVersie" minOccurs="0" />
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 
 	<xs:complexType name="Header">
 		<xs:sequence>
@@ -19,6 +31,10 @@
 		</xs:sequence>
 	</xs:complexType>
 
+	<xs:simpleType name="LDT_Standaard">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
 	<xs:simpleType name="LDT_BerichtCode">
 		<xs:restriction base="xs:string" />
 	</xs:simpleType>
@@ -29,15 +45,23 @@
 			<xs:minInclusive value="0" />
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="LDT_XSLTVersie">
-		<xs:restriction base="xs:token">
-			<xs:pattern value="(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)" />
-		</xs:restriction>
-	</xs:simpleType>
+	
 	<xs:simpleType name="LDT_BerichtSubversie">
 		<xs:restriction base="xs:integer">
 			<xs:maxInclusive value="99" />
 			<xs:minInclusive value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="LDT_Release">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))?" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="LDT_XSLTVersie">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)" />
 		</xs:restriction>
 	</xs:simpleType>
 

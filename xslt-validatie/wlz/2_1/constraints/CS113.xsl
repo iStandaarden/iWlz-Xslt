@@ -4,7 +4,7 @@
                 xmlns:zk31="http://www.istandaarden.nl/iwlz/2_1/zk31/schema"
 >
 
-    <!-- iWlz 1.2 CS113 version 1.9.8 (2019-10-03) -->
+    <!-- iWlz 1.2 CS113 version 1.9.11 (2019-10-11) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS113"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 version 1.9.8 (2019-10-03) -->
+	<!-- iWlz 2.1 version 1.9.11 (2019-10-11) -->
 	<xsl:import href="../../../common/2_0/basis.xsl"/>
 
 	<xsl:template match="*" mode="getDetails" priority="1">
