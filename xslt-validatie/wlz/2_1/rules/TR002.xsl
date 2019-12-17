@@ -12,7 +12,7 @@
                 xmlns:zk35="http://www.istandaarden.nl/iwlz/2_1/zk35/schema"
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
 >
-    <!-- iwlz 2.1 TR002 version 1.9.11 (2019-10-11) -->
+    <!-- iwlz 2.1 TR002 version 1.9.12 (2019-10-22) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="TR002"/>

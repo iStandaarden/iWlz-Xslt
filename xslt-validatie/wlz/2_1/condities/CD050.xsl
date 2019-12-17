@@ -7,7 +7,7 @@
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
 >
 
-    <!-- iWlz 2.1 CD050 version 1.9.11 (2019-10-11) -->
+    <!-- iWlz 2.1 CD050 version 1.9.12 (2019-10-22) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CD050"/>

@@ -3,7 +3,7 @@
 				xmlns:aw33="http://www.istandaarden.nl/iwlz/2_1/aw33/schema"
 				xmlns:zk33="http://www.istandaarden.nl/iwlz/2_1/zk33/schema"
 >
-	<!-- iwlz 2.1 TR106 version 1.9.11 (2019-10-11) -->
+	<!-- iwlz 2.1 TR106 version 1.9.12 (2019-10-22) -->
 
 	<xsl:import href="../common/basis.xsl"/>
 	<xsl:template match="*" mode="TR106"/>
@@ -39,7 +39,7 @@
 			<xsl:variable name="siblingInstelling" select="current()/*[local-name() = 'Instelling']"/>
 			<xsl:variable name="siblingFunctieCode" select="current()/*[local-name() = 'FunctieCode']"/>
 			
-			<xsl:if test="$pInstelling = $siblingInstelling and
+			<xsl:if test="normalize-space($pInstelling) = normalize-space($siblingInstelling) and
 						  normalize-space($pSoort) = normalize-space($siblingSoort) and
 						  normalize-space($pFunctieCode) = normalize-space($siblingFunctieCode)
 						  ">
@@ -65,8 +65,8 @@
 			<xsl:variable name="siblingLeveringsvorm" select="current()/*[local-name() = 'Leveringsvorm']"/>
 			<xsl:variable name="siblingInstelling" select="current()/*[local-name() = 'Instelling']"/>
 			<xsl:variable name="siblingZzpCode" select="current()/*[local-name() = 'ZzpCode']"/>
-			
-			<xsl:if test="$pInstelling = $siblingInstelling and
+
+			<xsl:if test="normalize-space($pInstelling) = normalize-space($siblingInstelling) and
 						  normalize-space($pSoort) = normalize-space($siblingSoort) and
 						  normalize-space($pLeveringsvorm) = normalize-space($siblingLeveringsvorm) and 
 						  normalize-space($pZzpCode) = normalize-space($siblingZzpCode)
@@ -87,7 +87,7 @@
 		<xsl:variable name="isOverlay">
 			<xsl:call-template name="isPeriodOverlay">
 				<xsl:with-param name="pThis" select="$pThis"/>
-				<xsl:with-param name="pOther" select="current()"/>
+				<xsl:with-param name="pOther" select="$pOther"/>
 			</xsl:call-template>
 		</xsl:variable>
 
