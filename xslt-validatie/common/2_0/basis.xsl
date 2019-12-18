@@ -1569,7 +1569,7 @@
     </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        1.9.14
+        1.9.15
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>
@@ -1593,7 +1593,7 @@
                 <xsl:comment>
                     XSLT<xsl:copy-of select="system-property('xsl:version')"/>(<xsl:copy-of
                         select="system-property('xsl:vendor')"/>)
-                    XSLT validatie 1.9.14
+                    XSLT validatie 1.9.15
                 </xsl:comment>
             </r:Header>
             <r:Fouten>

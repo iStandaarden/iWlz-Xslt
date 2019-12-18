@@ -3,7 +3,7 @@
                 xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema"
                 xmlns:aw39="http://www.istandaarden.nl/iwlz/2_1/aw39/schema"
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema">
-    <!-- iWlz 2.1 CD048 version 1.9.14 (2019-12-02) -->
+    <!-- iWlz 2.1 CD048 version 1.9.15 (2019-12-12) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CD048"/>
