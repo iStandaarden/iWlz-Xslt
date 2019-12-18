@@ -193,12 +193,6 @@
                               select="normalize-space(substring-before(concat($pValue, ','), ','))"/>
                 <xsl:choose>
                     <xsl:when
-                            test="string-length(normalize-space($vNextItem)) > 1 and
-					                            substring(normalize-space($vNextItem), 1, 1) = '!' and
-					                            normalize-space(substring(normalize-space($vNextItem), 2)) != normalize-space($pElement/text())">
-                        <xsl:value-of select="true()"/>
-                    </xsl:when>
-                    <xsl:when
                             test="normalize-space($pElement/text()) = $vNextItem">
                         <xsl:value-of select="true()"/>
                     </xsl:when>
@@ -393,16 +387,6 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="normalize-space($pValues) = '!#'">
-                <xsl:choose>
-                    <xsl:when test="$pElement/.">
-                        <xsl:value-of select="false()"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="true()"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
             <xsl:when
                     test="string-length(normalize-space($pValues)) > 1 and substring(normalize-space($pValues), 1, 1) = '#'">
                 <xsl:call-template name="testpattern">
@@ -410,6 +394,20 @@
                     <xsl:with-param name="pPattern"
                                     select="substring(normalize-space($pValues), 2)"/>
                 </xsl:call-template>
+            </xsl:when>
+            <xsl:when
+                    test="string-length(normalize-space($pValues)) > 1 and substring(normalize-space($pValues), 1, 1) = '!'">
+                <xsl:variable name="vValue">
+	                <xsl:call-template name="testvalue">
+	                    <xsl:with-param name="pElement" select="$pElement"/>
+	                    <xsl:with-param name="pValues"
+	                                    select="substring(normalize-space($pValues), 2)"/>
+	                </xsl:call-template>
+                </xsl:variable>
+                <xsl:choose>
+                	<xsl:when test="$vValue = 'true'"><xsl:value-of select="false()"/></xsl:when>
+                	<xsl:otherwise><xsl:value-of select="true()"/></xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="split">
@@ -1571,7 +1569,7 @@
     </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        1.9.13
+        1.9.14
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>
@@ -1595,7 +1593,7 @@
                 <xsl:comment>
                     XSLT<xsl:copy-of select="system-property('xsl:version')"/>(<xsl:copy-of
                         select="system-property('xsl:vendor')"/>)
-                    XSLT validatie 1.9.13
+                    XSLT validatie 1.9.14
                 </xsl:comment>
             </r:Header>
             <r:Fouten>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 version 1.9.13 (2019-11-13) -->
+	<!-- iWlz 2.1 version 1.9.14 (2019-12-02) -->
 	<xsl:import href="../../../common/2_0/basis.xsl"/>
 
 	<xsl:template match="*" mode="getDetails" priority="1">
@@ -116,7 +116,7 @@
 			<xsl:when test="$pRule='TR102'">Indien StatusAanlevering de waarde '1' (Eerste aanlevering) bevat, dan moet de logische sleutel van de aanlevering voor de betreffende client niet alleen uniek zijn binnen het bericht zelf maar ook in combinatie met alle reeds ontvangen berichten.</xsl:when>
 			<xsl:when test="$pRule='TR103'">Indien StatusAanlevering de waarde '2' (Gewijzigde aanlevering) bevat, dan moet voor de betreffende client een eerdere aanlevering met StatusAanlevering '1' (Eerste aanlevering) verstuurd zijn met dezelfde technische sleutel.</xsl:when>
 			<xsl:when test="$pRule='TR104'">Een verwijderd bericht kan niet gewijzigd worden.</xsl:when>
-			<xsl:when test="$pRule='TR106'">Wanneer dezelfde zorgeenheid met dezelfde soort en dezelfde leveringsvorm meer dan een keer aan dezelfde zorgaanbieder is toegewezen, dan mogen de zorgtoewijzingperiodes niet overlappen.</xsl:when>
+			<xsl:when test="$pRule='TR106'">Wanneer dezelfde zorgeenheid met dezelfde leveringsvorm meer dan een keer aan dezelfde zorgaanbieder is toegewezen of wanneer pgb meer dan een keer is toegewezen, dan mogen de zorgtoewijzingperiodes niet overlappen.</xsl:when>
 			<xsl:when test="$pRule='TR107'">Een aanbieder die de rol van dossierhouder en/of coordinator zorg thuis heeft, mag een aanvraag voor een aangepaste zorgtoewijzing doen als hij voor het indicatiebesluit waarop de aanvraag betrekking heeft een zorgtoewijzing heeft.</xsl:when>
 			<xsl:when test="$pRule='TR108'">Indien Indicatie tenminste een ToegewezenZorgzwaartepakket bevat waarvan Leveringsvorm de waarde '2'(Persoonsgebonden budget (PGB)) heeft, moet Dagtekening in de maand november of december liggen.</xsl:when>
 			<xsl:when test="$pRule='TR109'">Indien Indicatie tenminste een ToegewezenZorgzwaartepakket bevat waarvan Leveringsvorm de waarde '2' (Persoonsgebonden budget (PGB)) heeft, moet Overdrachtdatum gelijk zijn aan 1 januari.</xsl:when>
