@@ -4,7 +4,7 @@
 	xmlns:aw33="http://www.istandaarden.nl/iwlz/2_1/aw33/schema"
 	xmlns:zk33="http://www.istandaarden.nl/iwlz/2_1/zk33/schema"
 	xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema">
-	<!-- iwlz 2.1 TR119 version 1.9.12 (2019-10-22) -->
+	<!-- iwlz 2.1 TR119 version 1.9.13 (2019-11-13) -->
 
 	<xsl:import href="../common/basis.xsl" />
 	<xsl:template match="*" mode="TR119" />
