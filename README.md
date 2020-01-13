@@ -25,7 +25,7 @@ zk31  |||| v1.9.16 |
 zk33  |||| v1.9.16 |
 zk35  |||| v1.9.8 |
 zk39  |||| v1.9.8 |
-aw317 ||||| v1.9.8 
+aw317 ||||| v1.9.17 
 
 
 * Overzicht Releases: [https://github.com/iStandaarden/iWlz-Xslt/releases](https://github.com/iStandaarden/iWlz-Xslt/releases)

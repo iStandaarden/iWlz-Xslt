@@ -3,7 +3,7 @@
                 xmlns:aw317="http://www.istandaarden.nl/iwlz/2_1/aw317/schema"
                 xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema"
 >
-    <!-- iwlz 2.1 TR091 version 1.9.16 (2019-12-17) -->
+    <!-- iwlz 2.1 TR091 version 1.9.17 (2020-01-09) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="TR091"/>
@@ -15,8 +15,8 @@
         <xsl:call-template name="checkDateRelation">
             <xsl:with-param name="pSource" select="aw317:BerichtIdentificatie/iwlz:Dagtekening"/>
             <xsl:with-param name="pDate" select="aw317:Periode/iwlz:Einddatum"/>
-		<xsl:with-param name="pRelation">daysAfter</xsl:with-param>
-            <xsl:with-param name="pExtra">7</xsl:with-param>
+			<xsl:with-param name="pRelation">daysAfter</xsl:with-param>
+            <xsl:with-param name="pExtra">6</xsl:with-param>
             <xsl:with-param name="pRule">
                 TR091
             </xsl:with-param>

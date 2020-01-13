@@ -3,7 +3,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:zk31="http://www.istandaarden.nl/iwlz/2_1/zk31/schema"
 	xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema">
-	<!-- iwlz 2.1 TR108 version 1.9.16 (2019-12-17) -->
+	<!-- iwlz 2.1 TR108 version 1.9.17 (2020-01-09) -->
 
 	<xsl:import href="../common/basis.xsl" />
 	<xsl:template match="*" mode="TR108" />
