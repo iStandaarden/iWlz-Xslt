@@ -3,7 +3,7 @@
                 xmlns:iwlz="http://www.istandaarden.nl/iwlz/2_1/basisschema/schema"
 >
 
-    <!-- iWlz 2.1 CS023 version 1.9.17 (2020-01-09) -->
+    <!-- iWlz 2.1 CS023 version 1.9.18 (2020-01-24) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS023"/>

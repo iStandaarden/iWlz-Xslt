@@ -13,7 +13,7 @@
 	xmlns:zk35="http://www.istandaarden.nl/iwlz/2_1/zk35/schema"
 	xmlns:zk39="http://www.istandaarden.nl/iwlz/2_1/zk39/schema"
 	>
-	<!-- iwlz 2.1 CS002 version 1.9.17 (2020-01-09) -->
+	<!-- iwlz 2.1 CS002 version 1.9.18 (2020-01-24) -->
 	
 	<xsl:import href="../common/basis.xsl"/>
 	<xsl:template match="*" mode="CS002" />

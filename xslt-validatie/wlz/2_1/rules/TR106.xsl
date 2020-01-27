@@ -3,7 +3,7 @@
 				xmlns:aw33="http://www.istandaarden.nl/iwlz/2_1/aw33/schema"
 				xmlns:zk33="http://www.istandaarden.nl/iwlz/2_1/zk33/schema"
 >
-	<!-- iwlz 2.1 TR106 version 1.9.17 (2020-01-09) -->
+	<!-- iwlz 2.1 TR106 version 1.9.18 (2020-01-24) -->
 
 	<xsl:import href="../common/basis.xsl"/>
 	<xsl:template match="*" mode="TR106"/>
