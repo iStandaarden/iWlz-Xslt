@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:aw317="http://www.istandaarden.nl/iwlz/2_1/aw317/schema">
-    <!-- iWlz 2.1 CS093 version 1.9.18 (2020-01-24) -->
+    <!-- iWlz 2.1 CS093 version 1.9.19 (2020-03-25) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="CS093"/>
