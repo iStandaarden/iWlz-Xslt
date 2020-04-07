@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.1 version 1.9.20 (2020-04-06) -->
+	<!-- iWlz 2.1 version 1.9.21 (2020-04-07) -->
 	<xsl:import href="../../../common/2_0/basis.xsl"/>
 
 	<xsl:template match="*" mode="getDetails" priority="1">
@@ -122,7 +122,7 @@
 			<xsl:when test="$pRule='TR109'">Indien Indicatie tenminste een ToegewezenZorgzwaartepakket bevat waarvan Leveringsvorm de waarde '2' (Persoonsgebonden budget (PGB)) heeft, moet Overdrachtdatum gelijk zijn aan 1 januari.</xsl:when>
 			<xsl:when test="$pRule='TR110'">Overdrachtdatum moet groter zijn dan Dagtekening.</xsl:when>
 			<xsl:when test="$pRule='TR111'">De einddatum van de toegewezen zorgeenheid moet leeg zijn of groter of gelijk zijn aan de overdrachtdatum van de indicatie.</xsl:when>
-			<xsl:when test="$pRule='TR119'">Indien Soort de waarde 5 (Administratief) bevat, dan moet Opname de waarde 1 (Ja) bevatten.</xsl:when>
+			<xsl:when test="$pRule='TR119'">Indien Soort de waarde 5 (Administratief) bevat, dan moet Opname, indien gevuld, de waarde 1 (Ja) bevatten.</xsl:when>
 			<xsl:when test="$pRule='TR120'">Als Leveringsvorm in Aanvraag de waarde ‘4’ (Verblijf) bevat, mag er voor iedere ToewijzingIngangsdatum maximaal één AanvraagInstelling aanwezig zijn waarvan Opname de waarde ‘1’ (Ja) bevat.</xsl:when>
 			<xsl:when test="$pRule='TR123'">Voor iedere dag dat er een zorgtoewijzing is voor verblijf met opname Nee moet er tenminste een (1) zorgtoewijzing zijn voor verblijf met opname Ja.</xsl:when>
 			<xsl:when test="$pRule='TR124'">Indien Leveringsvorm de waarde 8 (Deeltijdverblijf (DTV)) heeft, moet Ingangsdatum groter of gelijk zijn aan 01-01-2020.</xsl:when>
