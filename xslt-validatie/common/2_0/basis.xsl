@@ -7,7 +7,6 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8"
                 indent="yes"/>
 
-
     <!-- Emit the (absolute or relative to the given context) XPath expression
         for this node; uses indexing when needed context is not checked currently -->
     <xsl:template name="printXPath">
@@ -140,12 +139,164 @@
         </r:Fout>
     </xsl:template>
 
-    <xsl:template match="*" mode="getDetails" priority="100">
+    <xsl:template match="*" mode="getDetails" priority="0">
         <xsl:param name="pRule">
             FOUT
         </xsl:param>
     </xsl:template>
+    
+    <xsl:template name="checkGemeenteCode">
+        <xsl:param name="pThis" select="."/>
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">FAIL</xsl:param>
+        
+        <xsl:variable name="vCorrect">
+	        <xsl:apply-templates select="." mode="validGemeente">
+	        	<xsl:with-param name="pGemeenteCode" select="1 * normalize-space($pThis/text())" />
+	        </xsl:apply-templates>
+        </xsl:variable>
 
+        <xsl:if test="$vCorrect != 'true'">
+            <xsl:call-template name="addError">
+                <xsl:with-param name="pRule" select="$pRule"/>
+                <xsl:with-param name="pElements" select="$pThis | $pExtra"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="validGemeente" priority="0">
+        <xsl:param name="pGemeenteCode" select="."/>
+    	<xsl:choose>
+	    	<xsl:when test="$pGemeenteCode &lt; 0 or $pGemeenteCode &gt; 2000"><xsl:value-of select="false()" /></xsl:when>
+	    	<xsl:otherwise><xsl:value-of select="true()" /></xsl:otherwise>
+    	</xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="checkAGBValid">
+        <xsl:param name="pThis" select="."/>
+        <xsl:param name="pFrom" />
+        <xsl:param name="pTo" select="false()"/>
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pRule">FAIL</xsl:param>
+        
+        <xsl:variable name="vCorrect">
+	        <xsl:choose>
+		        <xsl:when test="$pTo">
+			        <xsl:apply-templates select="." mode="validAGBCode">
+			        	<xsl:with-param name="pAGBCode" select="number(normalize-space($pThis/text()))" />
+			        	<xsl:with-param name="pFrom" select="number(translate($pFrom, '-', ''))" />
+			        	<xsl:with-param name="pTo" select="number(translate($pTo, '-', ''))" />
+			        </xsl:apply-templates>
+		        </xsl:when>
+		        <xsl:otherwise>
+			        <xsl:apply-templates select="." mode="validAGBCode">
+			        	<xsl:with-param name="pAGBCode" select="number(normalize-space($pThis/text()))" />
+			        	<xsl:with-param name="pFrom" select="number(translate($pFrom, '-', ''))" />
+			        </xsl:apply-templates>
+		        </xsl:otherwise>
+	        </xsl:choose>
+        </xsl:variable>
+
+        <xsl:if test="$vCorrect != 'true'">
+            <xsl:call-template name="addError">
+                <xsl:with-param name="pRule" select="$pRule"/>
+                <xsl:with-param name="pElements" select="$pThis | $pExtra"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="validAGBCode" priority="0">
+        <xsl:param name="pAGBCode" select="."/>
+        <xsl:param name="pFrom"/>
+        <xsl:param name="pTo" select="0"/>
+    	<xsl:value-of select="true()" />
+    </xsl:template>
+    
+    <xsl:template name="testzorgkantoor">
+        <xsl:param name="pThis"/> <!-- Instelling -->
+        <xsl:param name="pOther"/> <!-- Zorgkantoor-->
+        <xsl:param name="pLocal" select="true()" />
+    	<xsl:choose>
+	    	<xsl:when test="$pLocal">
+	    		<xsl:choose>
+	    			<xsl:when test="normalize-space($pThis) = normalize-space($pOther)"><xsl:value-of select="true()"/></xsl:when>
+	    			<xsl:otherwise><xsl:value-of select="false()" /></xsl:otherwise>
+	    		</xsl:choose>
+	    	</xsl:when>
+	    	<xsl:otherwise>
+		        <xsl:apply-templates select="." mode="validZorginstelling">
+		        	<xsl:with-param name="pInstelling" select="normalize-space($pThis)" />
+		        	<xsl:with-param name="pOntvanger" select="normalize-space($pOther)" />
+		        </xsl:apply-templates>
+	    	</xsl:otherwise>
+    	</xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="checkzorgkantoor">
+        <xsl:param name="pThis" select="."/> <!-- Instelling -->
+        <xsl:param name="pOther"/> <!-- Zorgkantoor-->
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pLocal" select="true()" />
+        <xsl:param name="pRule">FAIL</xsl:param>
+        
+        <xsl:variable name="vCorrect">
+	        <xsl:call-template name="testzorgkantoor">
+	        	<xsl:with-param name="pThis" select="$pThis" />
+	        	<xsl:with-param name="pOther" select="$pOther" />
+	        	<xsl:with-param name="pLocal" select="$pLocal" />
+	        </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:if test="$vCorrect != 'true'">
+            <xsl:call-template name="addError">
+                <xsl:with-param name="pRule" select="$pRule"/>
+                <xsl:with-param name="pElements" select="$pThis | $pOther | $pExtra"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="checkzorginstelling">
+        <xsl:param name="pThis"/> <!-- All instellingen -->
+        <xsl:param name="pOther"/> <!-- Ontvanger -->
+        <xsl:param name="pExtra" select="emptyNodeSet"/>
+        <xsl:param name="pLocal" select="true()" />
+        <xsl:param name="pRule">FAIL</xsl:param>
+        
+        <xsl:choose>
+        	<xsl:when test="$pThis">
+		        <xsl:variable name="vCorrect">
+			        <xsl:call-template name="testzorgkantoor">
+			        	<xsl:with-param name="pThis" select="$pThis[1]" />
+			        	<xsl:with-param name="pOther" select="$pOther" />
+			        	<xsl:with-param name="pLocal" select="$pLocal" />
+			        </xsl:call-template>
+		        </xsl:variable>
+		
+		        <xsl:if test="$vCorrect != 'true'">
+			        <xsl:call-template name="checkzorginstelling">
+		                <xsl:with-param name="pThis" select="$pThis[position() != 1]"/>
+		                <xsl:with-param name="pOther" select="$pOther"/>
+		                <xsl:with-param name="pExtra" select="$pExtra | $pThis[1]"/>
+				        <xsl:with-param name="pLocal" select="$pLocal" />
+		                <xsl:with-param name="pRule" select="$pRule"/>
+		            </xsl:call-template>
+		        </xsl:if>
+        	</xsl:when>
+        	<xsl:otherwise>
+	            <xsl:call-template name="addError">
+	                <xsl:with-param name="pRule" select="$pRule"/>
+	                <xsl:with-param name="pElements" select="$pOther | $pExtra"/>
+	            </xsl:call-template>
+        	</xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="validZorginstelling" priority="0">
+        <xsl:param name="pInstelling"/>
+        <xsl:param name="pOntvanger"/>
+		<xsl:value-of select="true()" />
+    </xsl:template>
+    
     <!-- Add a error of $pRule for $pElement if $pElement doesn't satisfy the
         11-proef -->
     <xsl:template name="check11proef">
@@ -590,6 +741,14 @@
 		            <xsl:with-param name="pDate"
 		                            select="translate($pDate, '-', '') - 10000"/>
 		            <xsl:with-param name="pExtra" select="$pExtra + 12" />
+		            <xsl:with-param name="pOverflow" select="$pOverflow" />
+		        </xsl:call-template>
+			</xsl:when>
+			<xsl:when test="$pExtra &gt; 12">
+		        <xsl:call-template name="addMonths">
+		            <xsl:with-param name="pDate"
+		                            select="translate($pDate, '-', '') + 10000"/>
+		            <xsl:with-param name="pExtra" select="$pExtra - 12" />
 		            <xsl:with-param name="pOverflow" select="$pOverflow" />
 		        </xsl:call-template>
 			</xsl:when>
@@ -1529,47 +1688,51 @@
     </xsl:template>
 
     <xsl:template match="*[local-name()='BerichtCode']"
-                  mode="header">
+                  mode="header" priority="10">
         <r:BerichtCode>
             <xsl:value-of select="text()"/>
         </r:BerichtCode>
     </xsl:template>
     <xsl:template match="*[local-name()='BerichtVersie']"
-                  mode="header">
+                  mode="header" priority="10">
         <r:BerichtVersie>
             <xsl:value-of select="text()"/>
         </r:BerichtVersie>
     </xsl:template>
     <xsl:template match="*[local-name()='BerichtSubversie']"
-                  mode="header">
+                  mode="header" priority="10">
         <r:BerichtSubversie>
             <xsl:value-of select="text()"/>
         </r:BerichtSubversie>
     </xsl:template>
     <xsl:template
             match="*[local-name()='Identificatie'] | *[local-name()='DeclarantFactuurNummer']"
-            mode="header">
+                  mode="header" priority="10">
         <r:Identificatie>
             <xsl:value-of select="normalize-space(text())"/>
         </r:Identificatie>
     </xsl:template>
     <xsl:template
             match="*[local-name()='Dagtekening'] | *[local-name()='FactuurDagtekening']"
-            mode="header">
+                  mode="header" priority="10">
         <r:Dagtekening>
             <xsl:value-of select="text()"/>
         </r:Dagtekening>
     </xsl:template>
     <xsl:template
             match="*[local-name()='BerichtIdentificatie'] | *[local-name()='DeclaratieFactuurIdentificatie']"
-            mode="header">
+            mode="header" priority="10">
         <r:BerichtIdentificatie>
             <xsl:apply-templates select="*" mode="header"/>
         </r:BerichtIdentificatie>
     </xsl:template>
+    <xsl:template
+            match="*[local-name()='DeclaratieIdentificatie']"
+            mode="header" priority="10">
+    </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        1.9.21
+        2.1.1
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>
@@ -1584,17 +1747,17 @@
         <r:Rapport>
             <r:Header>
                 <xsl:apply-templates
-                        select="//*[local-name() = 'Header']" mode="header"/>
-                <xsl:if test="not(contains($xsltVersion, '-SNAPSHOT'))">
-                    <r:XSLTVersie>
-                        <xsl:value-of select="normalize-space($xsltVersion)"/>
-                    </r:XSLTVersie>
-                </xsl:if>
-                <xsl:comment>
-                    XSLT<xsl:copy-of select="system-property('xsl:version')"/>(<xsl:copy-of
-                        select="system-property('xsl:vendor')"/>)
-                    XSLT validatie 1.9.21
-                </xsl:comment>
+			    select="//*[local-name() = 'Header']/*" mode="header"/>
+		    <xsl:choose>
+			    <xsl:when test="contains($xsltVersion, '-SNAPSHOT')">
+				  <r:XSLTVersie>0.0.0</r:XSLTVersie>
+			    </xsl:when>
+			    <xsl:otherwise>
+				  <r:XSLTVersie>
+					<xsl:value-of select="normalize-space($xsltVersion)"/>
+				  </r:XSLTVersie>
+			    </xsl:otherwise>
+		    </xsl:choose>
             </r:Header>
             <r:Fouten>
                 <xsl:apply-templates select="*" mode="traverse"/>
