@@ -16,20 +16,22 @@ Deze repository bevat de Xslt-sets voor gebruik binnen de iWlz.
  ![Laatste release](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?style=flat-square)
  ![Laatste release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iStandaarden/iWlz-Xslt?include_prereleases&style=flat-square)
 
-## Schematisch - minimale versie
+## Schematisch - minimale versie iWlz Release 2.2
 
 Bericht | CIZ-ZK | ZK-ZA | ZK-CAK | ZK-ZK | ZK-ZIN
 -------|---------|-------|-------|------|------
-io31  | v1.9.16 ||||
-aw33  || v1.9.19 |||
-aw35  || v1.9.8 |||
-aw39  || v1.9.8 |||
-ca317 ||| v1.9.11 ||
-ca319 ||| v1.8.5 ||
-zk31  |||| v1.9.20 |
-zk33  |||| v1.9.19 |
-zk35  |||| v1.9.8 |
-zk39  |||| v1.9.8 |
-aw317 ||||| v1.9.17
+io31  | v2.1.1 ||||
+aw33  || v2.1.1 |||
+aw35  || v2.1.1 |||
+aw39  || v2.1.1 |||
+ca317 ||| v2.1.1 ||
+ca319 ||| v2.1.1 ||
+zk31  |||| v2.1.1 |
+zk33  |||| v2.1.1 |
+zk35  |||| v2.1.1 |
+zk39  |||| v2.1.1 |
+aw317 ||||| v2.1.1
 
 * Overzicht Releases: [https://github.com/iStandaarden/iWlz-Xslt/releases](https://github.com/iStandaarden/iWlz-Xslt/releases)
+
+* Laatste versie iWlz Release 2.1: v1.9.21 [iWlz2.1-v1.9.21](https://github.com/iStandaarden/iWlz-Xslt/releases/tag/iWlz2.1-v1.9.21)
