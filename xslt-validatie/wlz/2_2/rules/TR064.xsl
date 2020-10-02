@@ -5,7 +5,7 @@
                 xmlns:zk35="http://www.istandaarden.nl/iwlz/2_2/zk35/schema"
                 xmlns:zk39="http://www.istandaarden.nl/iwlz/2_2/zk39/schema"
 >
-    <!-- iwlz 2.1 TR064 version 2.1.1 (2020-06-17) -->
+    <!-- iWlz 2.2 TR064 version 2.1.4 (2020-07-08) -->
 
     <xsl:import href="../common/basis.xsl"/>
     <xsl:template match="*" mode="TR064"/>
@@ -41,6 +41,13 @@
             <xsl:with-param name="pRule">TR064</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
+    <xsl:template match="aw39:Aanvraag/aw39:Instelling" mode="TR064">
+        <xsl:call-template name="checkzorgkantoor">
+            <xsl:with-param name="pOther" select="ancestor-or-self::aw39:Bericht/aw39:Header/aw39:Afzender"/>
+            <xsl:with-param name="pLocal" select="true()" />
+            <xsl:with-param name="pRule">TR064</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
     <xsl:template match="zk35:GeleverdeFunctie/zk35:Instelling" mode="TR064">
         <xsl:call-template name="checkzorgkantoor">
             <xsl:with-param name="pOther" select="ancestor-or-self::zk35:Bericht/zk35:Header/zk35:Afzender"/>
@@ -63,6 +70,13 @@
         </xsl:call-template>
     </xsl:template>
     <xsl:template match="zk39:MutatieZorgzwaartepakket/zk39:Instelling" mode="TR064">
+        <xsl:call-template name="checkzorgkantoor">
+            <xsl:with-param name="pOther" select="ancestor-or-self::zk39:Bericht/zk39:Header/zk39:Afzender"/>
+            <xsl:with-param name="pLocal" select="false()" />
+            <xsl:with-param name="pRule">TR064</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+    <xsl:template match="zk39:Aanvraag/zk39:Instelling" mode="TR064">
         <xsl:call-template name="checkzorgkantoor">
             <xsl:with-param name="pOther" select="ancestor-or-self::zk39:Bericht/zk39:Header/zk39:Afzender"/>
             <xsl:with-param name="pLocal" select="false()" />

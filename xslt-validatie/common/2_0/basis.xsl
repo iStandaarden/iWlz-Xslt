@@ -1732,7 +1732,7 @@
     </xsl:template>
 
     <xsl:variable name="xsltVersion">
-        2.1.1
+        2.1.4
     </xsl:variable>
 
     <xsl:template match="*|@*|text()" mode="check"/>

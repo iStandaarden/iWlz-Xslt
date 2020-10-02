@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:vr="http://www.istandaarden.nl/validatie/1_1/rapport/schema">
-	<!-- iWlz 2.2 AW317 (2020-06-17) -->
+	<!-- iWlz 2.2 AW317 (2020-07-08) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD005.xsl" />
@@ -11,6 +11,7 @@
 	<xsl:include href="condities/CD040.xsl" />
 	<xsl:include href="condities/CD052.xsl" />
 	<xsl:include href="condities/CD072.xsl" />
+	<xsl:include href="condities/CD090.xsl" />
 	<xsl:include href="constraints/CS002.xsl" />
 	<xsl:include href="constraints/CS003.xsl" />
 	<xsl:include href="constraints/CS012.xsl" />
@@ -24,6 +25,8 @@
 	<xsl:include href="constraints/CS093.xsl" />
 	<xsl:include href="constraints/CS108.xsl" />
 	<xsl:include href="constraints/CS118.xsl" />
+	<xsl:include href="constraints/CS131.xsl" />
+	<xsl:include href="constraints/CS132.xsl" />
 	<xsl:include href="rules/TR079.xsl" />
 	<xsl:include href="rules/TR091.xsl" />
 	<xsl:include href="rules/TR097.xsl" />
@@ -38,6 +41,7 @@
 		<xsl:apply-templates select="." mode="CD040"/>
 		<xsl:apply-templates select="." mode="CD052"/>
 		<xsl:apply-templates select="." mode="CD072"/>
+		<xsl:apply-templates select="." mode="CD090"/>
 		<xsl:apply-templates select="." mode="CS002"/>
 		<xsl:apply-templates select="." mode="CS003"/>
 		<xsl:apply-templates select="." mode="CS012"/>
@@ -51,6 +55,8 @@
 		<xsl:apply-templates select="." mode="CS093"/>
 		<xsl:apply-templates select="." mode="CS108"/>
 		<xsl:apply-templates select="." mode="CS118"/>
+		<xsl:apply-templates select="." mode="CS131"/>
+		<xsl:apply-templates select="." mode="CS132"/>
 		<xsl:apply-templates select="." mode="TR079"/>
 		<xsl:apply-templates select="." mode="TR091"/>
 		<xsl:apply-templates select="." mode="TR097"/>
@@ -61,7 +67,7 @@
 		<vr:XSLTHeader>
 			<vr:Standaard>iwlz</vr:Standaard>
 			<vr:StandaardRelease>2.2</vr:StandaardRelease>
-			<vr:XSLTVersie>2.1.1</vr:XSLTVersie>
+			<vr:XSLTVersie>2.1.4</vr:XSLTVersie>
 		</vr:XSLTHeader>
 	</xsl:variable>
 </xsl:stylesheet>

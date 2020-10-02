@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<!-- iWlz 2.2 version 2.1.1 (2020-06-17) -->
+	<!-- iWlz 2.2 version 2.1.4 (2020-07-08) -->
 
 	<xsl:import href="../../../common/2_0/basis.xsl" />
 		<xsl:template match="*" mode="getDetails" priority="100">
@@ -27,9 +27,10 @@
 			<xsl:when test="$pRule='CD070'">Als WzdVerklaring de waarde 1 (Opname op basis van artikel 21 is aan de orde) bevat, dan verplicht vullen, anders leeg laten.</xsl:when>
 			<xsl:when test="$pRule='CD071'">Als Leveringsvorm de waarde 4 (Verblijf) of 5 (VPT) heeft en Startdatum is kleiner of gelijk aan 31-12-2019, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CD072'">Als Leveringsvorm de waarde 8 (DTV) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
-			<xsl:when test="$pRule='CD073'">Als Leveringsvorm de waarde 4 (Verblijf), 5 (VPT), 8 (DTV) of 9 (VKB) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
+			<xsl:when test="$pRule='CD073'">Als Leveringsvorm de waarde 4 (Verblijf), 5 (VPT) of 8 (DTV)  heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CD074'">Als leveringsvorm de waarde 7 (MPT) of 8 (DTV) heeft, dan verplicht vullen, anders leeg laten.</xsl:when>
 			<xsl:when test="$pRule='CD090'">Als Leveringsstatus de waarde 2 (Wacht op voorkeur), 3 (Wacht uit voorzorg), 6 (Urgent plaatsen) of 7 (Actief plaatsen) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
+			<xsl:when test="$pRule='CD091'">Als Leveringsvorm de waarde 4 (Verblijf), 5 (VPT), 8 (DTV) of 9 (VKB) heeft, dan verplicht vullen, anders leeglaten.</xsl:when>
 			<xsl:when test="$pRule='CS002'">De waarde moet voldoen aan de 11-proef.</xsl:when>
 			<xsl:when test="$pRule='CS003'">Indien van toepassing vullen met een waarde die groter is dan, of gelijk is aan de Begindatum (of Ingangsdatum) van de aangeduide periode.</xsl:when>
 			<xsl:when test="$pRule='CS004'">Aaneengesloten vullen (zonder punten of spaties).</xsl:when>

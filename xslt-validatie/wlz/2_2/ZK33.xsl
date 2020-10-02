@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:vr="http://www.istandaarden.nl/validatie/1_1/rapport/schema">
-	<!-- iWlz 2.2 ZK33 (2020-06-17) -->
+	<!-- iWlz 2.2 ZK33 (2020-07-08) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD005.xsl" />
@@ -34,6 +34,7 @@
 	<xsl:include href="constraints/CS107.xsl" />
 	<xsl:include href="constraints/CS123.xsl" />
 	<xsl:include href="constraints/CS130.xsl" />
+	<xsl:include href="constraints/CS132.xsl" />
 	<xsl:include href="rules/TR002.xsl" />
 	<xsl:include href="rules/TR004.xsl" />
 	<xsl:include href="rules/TR005.xsl" />
@@ -91,6 +92,7 @@
 		<xsl:apply-templates select="." mode="CS107"/>
 		<xsl:apply-templates select="." mode="CS123"/>
 		<xsl:apply-templates select="." mode="CS130"/>
+		<xsl:apply-templates select="." mode="CS132"/>
 		<xsl:apply-templates select="." mode="TR002"/>
 		<xsl:apply-templates select="." mode="TR004"/>
 		<xsl:apply-templates select="." mode="TR005"/>
@@ -121,7 +123,7 @@
 		<vr:XSLTHeader>
 			<vr:Standaard>iwlz</vr:Standaard>
 			<vr:StandaardRelease>2.2</vr:StandaardRelease>
-			<vr:XSLTVersie>2.1.1</vr:XSLTVersie>
+			<vr:XSLTVersie>2.1.4</vr:XSLTVersie>
 		</vr:XSLTHeader>
 	</xsl:variable>
 </xsl:stylesheet>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:vr="http://www.istandaarden.nl/validatie/1_1/rapport/schema">
-	<!-- iWlz 2.2 IO31 (2020-06-17) -->
+	<!-- iWlz 2.2 IO31 (2020-07-08) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD005.xsl" />
@@ -89,7 +89,7 @@
 		<vr:XSLTHeader>
 			<vr:Standaard>iwlz</vr:Standaard>
 			<vr:StandaardRelease>2.2</vr:StandaardRelease>
-			<vr:XSLTVersie>2.1.1</vr:XSLTVersie>
+			<vr:XSLTVersie>2.1.4</vr:XSLTVersie>
 		</vr:XSLTHeader>
 	</xsl:variable>
 </xsl:stylesheet>

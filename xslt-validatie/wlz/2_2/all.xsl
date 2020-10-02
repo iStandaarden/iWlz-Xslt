@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:vr="http://www.istandaarden.nl/validatie/1_1/rapport/schema">
-	<!-- iWlz 2.2 (2020-06-17) -->
+	<!-- iWlz 2.2 (2020-07-08) -->
 
 	<xsl:import href="common/basis.xsl" />
 	<xsl:include href="condities/CD004.xsl" />
@@ -26,6 +26,8 @@
 	<xsl:include href="condities/CD072.xsl" />
 	<xsl:include href="condities/CD073.xsl" />
 	<xsl:include href="condities/CD074.xsl" />
+	<xsl:include href="condities/CD090.xsl" />
+	<xsl:include href="condities/CD091.xsl" />
 	<xsl:include href="constraints/CS002.xsl" />
 	<xsl:include href="constraints/CS003.xsl" />
 	<xsl:include href="constraints/CS012.xsl" />
@@ -51,6 +53,9 @@
 	<xsl:include href="constraints/CS125.xsl" />
 	<xsl:include href="constraints/CS127.xsl" />
 	<xsl:include href="constraints/CS130.xsl" />
+	<xsl:include href="constraints/CS131.xsl" />
+	<xsl:include href="constraints/CS132.xsl" />
+	<xsl:include href="constraints/CS133.xsl" />
 	<xsl:include href="rules/TR002.xsl" />
 	<xsl:include href="rules/TR004.xsl" />
 	<xsl:include href="rules/TR005.xsl" />
@@ -116,6 +121,8 @@
 		<xsl:apply-templates select="." mode="CD072"/>
 		<xsl:apply-templates select="." mode="CD073"/>
 		<xsl:apply-templates select="." mode="CD074"/>
+		<xsl:apply-templates select="." mode="CD090"/>
+		<xsl:apply-templates select="." mode="CD091"/>
 		<xsl:apply-templates select="." mode="CS002"/>
 		<xsl:apply-templates select="." mode="CS003"/>
 		<xsl:apply-templates select="." mode="CS012"/>
@@ -141,6 +148,9 @@
 		<xsl:apply-templates select="." mode="CS125"/>
 		<xsl:apply-templates select="." mode="CS127"/>
 		<xsl:apply-templates select="." mode="CS130"/>
+		<xsl:apply-templates select="." mode="CS131"/>
+		<xsl:apply-templates select="." mode="CS132"/>
+		<xsl:apply-templates select="." mode="CS133"/>
 		<xsl:apply-templates select="." mode="TR002"/>
 		<xsl:apply-templates select="." mode="TR004"/>
 		<xsl:apply-templates select="." mode="TR005"/>
@@ -187,7 +197,7 @@
 		<vr:XSLTHeader>
 			<vr:Standaard>iwlz</vr:Standaard>
 			<vr:StandaardRelease>2.2</vr:StandaardRelease>
-			<vr:XSLTVersie>2.1.1</vr:XSLTVersie>
+			<vr:XSLTVersie>2.1.4</vr:XSLTVersie>
 		</vr:XSLTHeader>
 	</xsl:variable>
 </xsl:stylesheet>
