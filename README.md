@@ -20,17 +20,17 @@ Deze repository bevat de Xslt-sets voor gebruik binnen de iWlz.
 
 Bericht | CIZ-ZK | ZK-ZA | ZK-CAK | ZK-ZK | ZK-ZIN
 -------|---------|-------|-------|------|------
-io31  | v2.1.1 ||||
-aw33  || v2.1.1 |||
-aw35  || v2.1.1 |||
-aw39  || v2.1.1 |||
-ca317 ||| v2.1.1 ||
-ca319 ||| v2.1.1 ||
-zk31  |||| v2.1.1 |
-zk33  |||| v2.1.1 |
-zk35  |||| v2.1.1 |
-zk39  |||| v2.1.1 |
-aw317 ||||| v2.1.1
+io31  | v2.1.4 ||||
+aw33  || v2.1.4 |||
+aw35  || v2.1.4 |||
+aw39  || v2.1.4 |||
+ca317 ||| v2.1.4 ||
+ca319 ||| v2.1.4 ||
+zk31  |||| v2.1.4 |
+zk33  |||| v2.1.4 |
+zk35  |||| v2.1.4 |
+zk39  |||| v2.1.4 |
+aw317 ||||| v2.1.4
 
 * Overzicht Releases: [https://github.com/iStandaarden/iWlz-Xslt/releases](https://github.com/iStandaarden/iWlz-Xslt/releases)
 
